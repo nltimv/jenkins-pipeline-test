@@ -1,3 +1,5 @@
+def buildNumber = env.BUILD_NUMBER
+
 podTemplate(namespace: 'jenkins-ci', yaml: '''
     apiVersion: v1
     kind: Pod
@@ -44,7 +46,7 @@ podTemplate(namespace: 'jenkins-ci', yaml: """
     spec:
       containers:
       - name: test
-        image: nltimv/jenkins-pipeline-test:${env.BUILD_NUMBER}
+        image: nltimv/jenkins-pipeline-test:${buildNumber}
         command:
         - sleep
         args:
@@ -57,7 +59,7 @@ podTemplate(namespace: 'jenkins-ci', yaml: """
 """) {
   node(POD_LABEL) {
     stage('Test') {
-      container('kaniko') {
+      container('test') {
         stage('Call google.com using curl')
         sh '''
           curl https://google.com
