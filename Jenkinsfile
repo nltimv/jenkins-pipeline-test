@@ -44,7 +44,7 @@ podTemplate(namespace: 'jenkins-ci', yaml: '''
     spec:
       containers:
       - name: test
-        image: nltimv/jenkins-pipeline-test:$BUILD_NUMBER
+        image: nltimv/jenkins-pipeline-test:${env.BUILD_NUMBER}
         command:
         - sleep
         args:
