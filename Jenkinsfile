@@ -38,7 +38,7 @@ podTemplate(namespace: 'jenkins-ci', yaml: '''
     }
   }
 }
-podTemplate(namespace: 'jenkins-ci', yaml: '''
+podTemplate(namespace: 'jenkins-ci', yaml: """
     apiVersion: v1
     kind: Pod
     spec:
@@ -54,7 +54,7 @@ podTemplate(namespace: 'jenkins-ci', yaml: '''
             cpu: 200m
             memory: 512Mi
       restartPolicy: Never
-''') {
+""") {
   node(POD_LABEL) {
     stage('Test') {
       container('kaniko') {
